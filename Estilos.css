@@ -1,0 +1,429 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+
+.Titulopricipal {
+  font-family: Arial, sans-serif;
+  color: darkgoldenrod;
+  position: none;
+}
+
+.Links {
+  color:black;
+  text-decoration: none;
+  font-size: x-large;
+}
+
+
+.Links:hover {
+  color:blue;
+}
+
+
+.Filas {
+  margin-bottom: 20px;
+}
+
+
+.Fondo {
+  background-size: cover; 
+  background-position: center;
+  background-image: url('Imagenes/Fondo\ Principal.jpg');
+}
+
+.ColumnaCanalizacion {
+  max-width: 80%;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  padding: 20px 20px 20px 20px;
+  background-color:white;
+}
+
+
+.ContenedorTuberiaSelec {
+  margin-top: 50px;
+}
+
+.Titulo-h2 {
+  background-color: lightgrey;
+  padding: 15px 20px;
+  border-radius: 5px;
+}
+
+
+
+/* Barra de navegación */
+
+.navbar {
+  background-color: black;
+}
+
+.contenedor-menu {
+  display: flex;
+  align-items: center;
+}
+
+
+.Icono {
+  height: 5%;
+  width: 5%;
+  margin-left: 10px;
+}
+
+
+.menu-horizontal {
+  list-style: none;
+  display: flex;
+}
+
+.menu-horizontal > li > a {
+  display: block;
+  padding: 15px 20px;
+  color: darkgoldenrod;
+  text-decoration: none;
+  font-size: larger; 
+}
+
+.menu-horizontal > li > a:hover {
+   background-color: #333;
+}
+
+.menu-vertical {
+  position: absolute;
+  display: none;
+  list-style: none;
+  width: 160px;
+  background-color: black;
+}
+
+.menu-horizontal li:hover .menu-vertical {
+  display: block;
+}
+
+.menu-vertical li a {
+  display: block;
+  color: white;
+  padding: 10px 10px 10px 10px;
+  text-decoration: none;
+
+}
+
+.menu-vertical li a:hover {
+  color: darkgoldenrod;
+
+}
+
+
+/* Menú Hamburguesa */
+
+.abrir-menu {
+  display: none;
+}
+
+.movil-menu {
+  display: none;
+}
+
+.movil-lista-nav {
+  display: none;
+}
+
+
+.movil-lista-nav li a {
+  text-decoration: none;
+  color: darkgoldenrod;
+  font-size: larger;
+  padding-right: 50px;
+}
+
+.movil-lista-nav li a:hover {
+  color: blue;
+}
+
+
+
+.movil-lista-nav li {
+  list-style: none;
+}
+
+
+/* Fin de Menú Hamburguesa */
+
+
+
+.EtiquetaResultado {
+  color: blue;
+  font-size: x-large;
+}
+
+
+.Videos {
+  border-style: inset;
+  border-color: black;
+  display: block;
+  height: 400px;
+}
+
+.tabla-capacidad {
+  display: block;
+  height: 600px;
+}
+
+.tabla-agrupamiento {
+  display: block;
+  height: 350px;
+}
+
+
+
+.Frame {
+  width: 100%;
+  height: 100%;
+}
+
+.filas-conversion{
+  padding-left: 20px;
+}
+
+.menu-oculto{
+  display: none;
+}
+
+
+.movil-menu {
+  display: flex;
+  width: 100%;
+  justify-content: center ;
+  align-items: center;
+  background-color: #333;
+  position: absolute;
+}
+
+/* Estilos para dispositivos móviles */
+@media screen and (max-width: 768px) {
+
+
+  /* Menú Hamburguesa */
+
+  .abrir-menu {
+    display: block;
+    margin-right: 3%;
+  }
+  
+  .contenedor-menu {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .menu-horizontal {
+    display: none;
+  }
+
+  .movil-lista-nav {
+    display: block;
+  }
+
+/* Fin Menú Hamburguesa */
+
+
+  .Icono {
+    height: 12%;
+    width:  12%;
+    margin-left: 5px;
+  }
+  
+  .Columna {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+
+  .ContenedorColumnas {
+    flex-wrap: wrap;  
+  }
+
+  .ColumnaCanalizacion {
+    max-width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .Publicidad {
+    max-height: 200px;
+    max-width: 500px;
+  }
+
+  .Columna1 {
+    margin-bottom: 0px;
+  }
+
+  .Columna2 {
+    margin-bottom: 0px;
+  }
+
+  .TablaCorriente {
+    max-width: 200px; 
+  }
+
+
+   .TablasTubos {
+    width: 95%;
+   }
+
+   .TablaImpedancia {
+    width: 98%;
+   }
+
+   .tabla-agrupamiento {
+    display: block;
+    height: 250px;
+  }
+
+  .ocultar-p {
+    display: none;
+    width: 100%;
+  }
+
+  
+   
+}
+
+.Titulo{
+  margin-top: 1%;
+   height: 1%;
+   color: black;
+ }
+
+.ContenedorColumnas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Columna1 {
+  padding-right: 50px;
+  padding-left:  50px;
+  padding-bottom: 20px;
+  max-width: 80%;
+}
+
+.Columna2 {
+  padding-right: 50px;
+  padding-left:  50px;
+  padding-bottom: 20px;
+  max-width: 80%;
+}
+
+.table-borderless{
+  border-style: solid;
+  border-width: 5px;
+}
+
+.lienzo{
+  width:  100px;
+  height: 100px;
+}
+
+.ImagenTabla{
+  width: 50%;
+  height: 50%;
+}
+
+
+.EnlaceVideo {
+  color: black;
+}
+
+
+/* Estilos del pie de página */
+footer {
+  background-color:black;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+
+footer p {
+  margin: 0;
+}
+
+.redes-sociales {
+  margin-top: 10px;
+}
+
+.boton-social {
+  display: inline-block;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  padding: 10px;
+  margin: 0 5px;
+  border-radius: 50%;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.boton-social:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Estilos adicionales opcionales */
+footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.IconRedes {
+  height: 50px;
+  width:  50px;
+}
+
+.IconRedesPop {
+  height: 10%;
+  width:   10%;
+}
+
+.redes-sociales a {
+  margin-right:8px;
+  margin-left: 8px;
+
+}
+
+.Publicidad {
+  height: 300px;
+  width: 300px;
+}
+
+.ColumnaTemperatura {
+  height: 300px;
+  width: 300px;
+}
+
+
+.cuadro-comentarios {
+ margin-left: 20%;
+ margin-right: 20%;
+}
+
+.cont-datos-personales {
+ display: block;
+ max-width: 300px;
+ background-color: lightgrey;
+ padding-top: 20px;
+ padding-bottom: 20px;
+ margin-bottom: 20px;
+ }
+
+ .margen-texto {
+  padding-right: 30px;
+  }
