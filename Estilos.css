@@ -132,6 +132,18 @@ body {
   align-items: center;
 }
 
+.Imagenes {
+  margin-right: 20px;
+  height: 200px;
+  width: 200px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 5px;
+}
+
+
+
+
 
 /* Estilos para dispositivos móviles */
 @media screen and (max-width: 768px) {
@@ -172,11 +184,14 @@ body {
   }
 
 
-  .ContenedorColumnas {
-    flex-wrap: wrap;  
+  .Imagenes {
+    height: 100px;
+    width:  100px;
   }
- 
-   
+  
+
+
+
 }
 
 
