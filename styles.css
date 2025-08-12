@@ -1,0 +1,189 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.Contenedor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 80%;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pantalla-completa {
+  min-height: 100vh;
+  padding: 0;
+}
+
+.icono {
+  width: 10%;
+  height: 10%;
+  margin-right: 10px;
+}
+
+.bg-navbar {
+  background: linear-gradient(to bottom right, blue, #90a4ae);
+}
+
+.btn-navbar-icon {
+  color: white;
+  background: transparent;
+  border: none;
+}
+
+/* Menu Lateral */
+.menu-lateral {
+  position: fixed;
+  top: 65px;
+  right: -200px; /* oculto fuera de la pantalla */
+  width: 200px;
+  height: 50%;
+  background-color: lightgrey;
+  transition: right 0.3s ease-in-out;
+  padding: 20px;
+  z-index: 9998;
+}
+
+.menu-lateral ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-lateral ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.Imagen_acerca_de {
+  width: 30%;
+  height: 30%;
+}
+
+.link_disabled {
+  pointer-events: none; /* No permite clics */
+  color: gray; /* Color típico de deshabilitado */
+  opacity: 0.6; /* Hace que parezca desactivado */
+  cursor: not-allowed; /* Cambia el cursor */
+}
+/* Fin Menu Lateral */
+
+.imagen_portada {
+  height: 30%;
+  width: 50%;
+}
+
+.titulo-cablemaster {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 30px;
+  color: steelblue;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  margin-top: 5%;
+  border-style: solid;
+  border-radius: 5px;
+  width: 80%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.titulos {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 30px;
+  color: steelblue;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  margin-top: 5%;
+  width: 80%;
+}
+
+.btn-custom {
+  font-size: 1rem; /* Tamaño de letra más grande */
+  font-weight: 500; /* Negrita ligera */
+  width: 80%;
+}
+
+.icono_contacto {
+  width: 5%;
+  height: 5%;
+  margin-right: 10px;
+}
+
+.link_contacto {
+  text-decoration: none;
+  color: steelblue;
+}
+
+.Color_text {
+  font-weight: 600;
+  color: steelblue;
+}
+
+/* Ventana Modal Resultados */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-contenido {
+  background-color: #fff;
+  margin: 40% auto;
+  padding: 0;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  overflow: auto;
+}
+
+.modal-header {
+  background: linear-gradient(to bottom right, #5472d3, #90a4ae);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  justify-content: center;
+}
+
+.modal-body {
+  padding: 20px;
+  text-align: center;
+}
+/* Fin Ventana Modal Resultados */
+
+@media (max-width: 1024px) and (min-width: 600px) {
+  .Contenedor {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
