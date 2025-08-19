@@ -82,7 +82,10 @@
       <center>
         <div style="width: 80%">
           <br />
-          <label for="Unidades_calibre" class="Color_text"
+          <label
+            for="Unidades_calibre"
+            class="Color_text"
+            data-i18n="Calibre_conductor"
             >Calibre Conductor</label
           >
           <select
@@ -119,7 +122,6 @@
           </div>
 
           <div id="Contenedor_MCM" style="display: none">
-            <label for="MCM" class="Color_text">Conductor MCM</label>
             <select
               id="MCM"
               class="form-select"
@@ -140,18 +142,26 @@
             </select>
           </div>
           <br />
-          <label for="Material" class="Color_text">Material Conductor</label>
+          <label
+            for="Material"
+            class="Color_text"
+            data-i18n="Material_conductor"
+            >Material Conductor</label
+          >
           <select
             id="Material"
             class="form-select"
             style="text-align: center"
             aria-label="Default select example"
           >
-            <option value="Cobre" selected>Cobre</option>
-            <option value="Aluminio">Aluminio</option>
+            <option value="Cobre" selected data-i18n="Cobre">Cobre</option>
+            <option value="Aluminio" data-i18n="Aluminio">Aluminio</option>
           </select>
           <br />
-          <label for="Aislamiento" class="Color_text"
+          <label
+            for="Aislamiento"
+            class="Color_text"
+            data-i18n="Material_canalizacion"
             >Material Canalizacion</label
           >
           <select
@@ -161,8 +171,8 @@
             aria-label="Default select example"
           >
             <option value="PVC" selected>PVC</option>
-            <option value="Aluminio">Aluminio</option>
-            <option value="Acero">Acero</option>
+            <option value="Aluminio" data-i18n="Aluminio">Aluminio</option>
+            <option value="Acero" data-i18n="Acero">Acero</option>
           </select>
           <br />
         </div>
@@ -171,6 +181,7 @@
           type="button"
           class="btn btn-primary btn-custom"
           onclick="Buscar()"
+          data-i18n="Buscar"
         >
           Buscar
         </button>
@@ -180,27 +191,43 @@
           <div class="modal-contenido">
             <div class="modal-body">
               <center>
-                <label
-                  id="Resultado_Calibre"
-                  class="Color_text"
-                  style="font-weight: 700"
-                ></label
+                <label class="Color_text" style="font-weight: 700"
+                  ><span data-i18n="Calibre"> Calibre:</span>
+                  <span id="Resultado_Calibre"></span></label
                 ><br />
-                <label
-                  id="Resultado_Material"
-                  class="Color_text"
-                  style="font-weight: 700"
-                ></label
+                <label class="Color_text" style="font-weight: 700"
+                  >Material: <span id="Resultado_Material"></span></label
                 ><br />
+                <label class="Color_text" style="font-weight: 700"
+                  ><span data-i18n="Canalizacion"> Canalización: </span>
+                  <span id="Resultado_Canalizacion"></span></label
+                ><br />
+
                 <br />
                 <label
-                  id="Resultado"
-                  style="color: steelblue; font-weight: 750; font-size: 20px"
+                  id="Resultado-R"
+                  style="color: blue; font-weight: 750; font-size: 20px"
                 ></label>
                 <br /><br />
-                <label id="Normativa" style="font-size: 12px"></label
+                <label
+                  id="Resultado-X"
+                  style="color: blue; font-weight: 750; font-size: 20px"
+                ></label
                 ><br /><br />
-                <button class="btn btn-primary" onclick="cerrarModal()">
+                <p style="font-size: 12px; justify-content: left">
+                  <strong data-i18n="Nota">Nota:</strong>
+                  <span data-i18n="Leyenda1"
+                    >Resistencia y Reactancia de corriente alterna para cables
+                    de 600 Voltios, 60 hz, 75°C , tres conductores individuales
+                    en un circuito.</span
+                  >
+                </p>
+
+                <button
+                  class="btn btn-primary"
+                  onclick="cerrarModal()"
+                  data-i18n="Cerrar"
+                >
                   Cerrar
                 </button>
               </center>
@@ -245,42 +272,6 @@
           });
       }
 
-      function Mostrar_menu() {
-        const btnMenu = document.getElementById("btnMenu");
-        const menu = document.getElementById("menuLateral");
-        if (menu.style.right === "0px") {
-          menu.style.right = "-200px"; // ocultar
-        } else {
-          menu.style.right = "0px"; // mostrar
-        }
-      }
-
-      function Page_Acerca_de() {
-        window.location.href = "Acerca_de.html";
-      }
-
-      function Unidades_cable() {
-        const Calibre = document.getElementById("Unidades_calibre").value;
-
-        if (Calibre == "AWG") {
-          document.getElementById("Contenedor_AWG").style.display = "block";
-          document.getElementById("Contenedor_MCM").style.display = "none";
-          document.getElementById("Contenedor_mm2").style.display = "none";
-        }
-
-        if (Calibre == "MCM") {
-          document.getElementById("Contenedor_AWG").style.display = "none";
-          document.getElementById("Contenedor_MCM").style.display = "block";
-          document.getElementById("Contenedor_mm2").style.display = "none";
-        }
-
-        if (Calibre == "mm2") {
-          document.getElementById("Contenedor_AWG").style.display = "none";
-          document.getElementById("Contenedor_MCM").style.display = "none";
-          document.getElementById("Contenedor_mm2").style.display = "block";
-        }
-      }
-
       function Buscar() {
         const Unidades_calibre =
           document.getElementById("Unidades_calibre").value;
@@ -288,6 +279,7 @@
         const MCM = document.getElementById("MCM").value;
         const Material = document.getElementById("Material").value;
         const Tuberia = document.getElementById("Material_canalizacion").value;
+        const savedLang = localStorage.getItem("lang") || "es";
         let Calibre;
 
         if (Unidades_calibre == "AWG") {
@@ -303,13 +295,110 @@
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ Calibre, Material, Tuberia }),
+          body: JSON.stringify({
+            calibre: Calibre,
+            material: Material,
+            canalizacion: Tuberia,
+          }),
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
+            const Calibre_R = data.Calibre;
+            const Material_R = data.Material;
+            const Canalizacion_R = data.Canalizacion;
+            const Resistencia = eliminarCeros(data.Resistencia) + " Ω/km";
+            const Reactancia = eliminarCeros(data.Reactancia) + " Ω/km";
+
+            if (Unidades_calibre == "AWG") {
+              document.getElementById("Resultado_Calibre").textContent =
+                Calibre_R;
+            } else {
+              document.getElementById("Resultado_Calibre").textContent =
+                Calibre_R + " MCM";
+            }
+
+            if (savedLang == "es") {
+              document.getElementById("Resultado_Material").textContent =
+                Material_R;
+            } else {
+              if (Material_R == "Cobre") {
+                document.getElementById("Resultado_Material").textContent =
+                  "Copper";
+              } else {
+                document.getElementById("Resultado_Material").textContent =
+                  "Aluminum";
+              }
+            }
+
+            if (savedLang == "es") {
+              document.getElementById("Resultado_Canalizacion").textContent =
+                Canalizacion_R;
+            } else {
+              if (Canalizacion_R == "PVC") {
+                document.getElementById("Resultado_Canalizacion").textContent =
+                  "PVC";
+              }
+
+              if (Canalizacion_R == "Aluminio") {
+                document.getElementById("Resultado_Canalizacion").textContent =
+                  "Aluminum";
+              }
+
+              if (Canalizacion_R == "Acero") {
+                document.getElementById("Resultado_Canalizacion").textContent =
+                  "Steel";
+              }
+            }
+
+            document.getElementById("Resultado-R").textContent = Resistencia;
+            document.getElementById("Resultado-X").textContent = Reactancia;
+
+            document.getElementById("Resultado_buscar").style.display = "block";
           })
           .catch((error) => console.error("Error:", error));
+      }
+
+      function Mostrar_menu() {
+        const btnMenu = document.getElementById("btnMenu");
+        const menu = document.getElementById("menuLateral");
+        if (menu.style.right === "0px") {
+          menu.style.right = "-200px"; // ocultar
+        } else {
+          menu.style.right = "0px"; // mostrar
+        }
+      }
+
+      function eliminarCeros(str) {
+        if (typeof str !== "string") return str;
+
+        // Reemplaza coma por punto si se usa coma decimal
+        let normalizado = str.replace(",", ".");
+
+        // Convierte a número y de vuelta a string para quitar ceros innecesarios
+        let numero = parseFloat(normalizado);
+
+        // Si no es un número válido, retorna el original
+        if (isNaN(numero)) return str;
+
+        return numero.toString();
+      }
+
+      function Page_Acerca_de() {
+        window.location.href = "Acerca_de.html";
+      }
+
+      function Unidades_cable() {
+        const Calibre = document.getElementById("Unidades_calibre").value;
+
+        if (Calibre == "AWG") {
+          document.getElementById("Contenedor_AWG").style.display = "block";
+          document.getElementById("Contenedor_MCM").style.display = "none";
+        }
+
+        if (Calibre == "MCM") {
+          document.getElementById("Contenedor_AWG").style.display = "none";
+          document.getElementById("Contenedor_MCM").style.display = "block";
+        }
       }
 
       function cerrarModal() {

@@ -18,7 +18,7 @@
           class="container-fluid d-flex justify-content-between align-items-center"
         >
           <img src="imagenes/icono.png" class="icono" alt="" />
-          <span data-i18n="titulo_tierra" style="color: white">
+          <span data-i18n="Conductor_tierra" style="color: white">
             Conductor de Tierra
           </span>
           <button class="btn btn-navbar-icon ms-2" title="Opciones">
@@ -82,11 +82,14 @@
       <center>
         <div style="width: 80%">
           <br />
-          <h3 class="Color_text">Calibre Conductor de Tierra</h3>
+          <h3 class="Color_text" data-i18n="Calibre_Conductor_Tierra">
+            Calibre Conductor de Tierra
+          </h3>
           <label
             for="Unidades_calibre"
             class="Color_text"
             style="margin-bottom: 10px"
+            data-i18n="Seleccione_Calibre_tierra"
           >
             Seleccione Calibre Conductor Fase:</label
           >
@@ -144,6 +147,7 @@
           type="button"
           class="btn btn-primary btn-custom"
           onclick="Buscar()"
+          data-i18n="Buscar"
         >
           Buscar
         </button>
@@ -153,10 +157,16 @@
           <div class="modal-contenido">
             <div class="modal-body">
               <center>
-                <label style="font-weight: 700" class="Color_text"
+                <label
+                  style="font-weight: 700"
+                  class="Color_text"
+                  data-i18n="Calibre_Tierra"
                   >Calibre de Tierra</label
                 ><br />
-                <label style="font-weight: 700" class="Color_text"
+                <label
+                  style="font-weight: 700"
+                  class="Color_text"
+                  data-i18n="Recomendado:"
                   >Recomendado:</label
                 ><br /><br />
                 <label
@@ -165,7 +175,11 @@
                   class="Color_text"
                 ></label
                 ><br /><br />
-                <button class="btn btn-primary" onclick="cerrarModal()">
+                <button
+                  class="btn btn-primary"
+                  onclick="cerrarModal()"
+                  data-i18n="Cerrar"
+                >
                   Cerrar
                 </button>
               </center>

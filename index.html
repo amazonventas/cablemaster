@@ -90,44 +90,48 @@
               type="button"
               class="btn btn-primary btn-custom"
               style="margin-top: 10px"
+              data-i18n="Capacidad_conductor"
             >
               Capacidad del Conductor
             </button></a
           >
           <br /><br /><a href="Calibre_tierra.html">
-            <button type="button" class="btn btn-primary btn-custom">
+            <button
+              type="button"
+              class="btn btn-primary btn-custom"
+              data-i18n="Conductor_tierra"
+            >
               Conductor de Tierra
             </button></a
           >
           <br /><br /><a href="Impedancia_conductor.html">
-            <button type="button" class="btn btn-primary btn-custom">
+            <button
+              type="button"
+              class="btn btn-primary btn-custom"
+              data-i18n="Impedancia_conductor"
+            >
               Impedancia Conductores
             </button></a
           >
-          <br /><br />
-          <button type="button" class="btn btn-primary btn-custom">
-            Tipos de Aislamientos
-          </button>
-          <br /><br />
-          <button
-            type="button"
-            class="btn btn-primary btn-custom"
-            style="margin-bottom: 8px"
-          >
-            Caída de Voltaje
-          </button>
-          <div>
-            <strong>
-              <a href="" class="link_contacto"
-                ><img
-                  src="imagenes/contacto.png"
-                  class="icono_contacto"
-                  alt=""
-                />
-                Contacto</a
-              ></strong
+          <br /><br /><a href="Tipo_aislamiento.html">
+            <button
+              type="button"
+              class="btn btn-primary btn-custom"
+              data-i18n="Tipo_aislamiento"
             >
-          </div>
+              Tipo de Aislamiento
+            </button></a
+          >
+          <br /><br /><a href="Caida_voltaje.html">
+            <button
+              type="button"
+              class="btn btn-primary btn-custom"
+              style="margin-bottom: 8px"
+              data-i18n="Caida_voltaje"
+            >
+              Caída de Voltaje
+            </button></a
+          >
         </div>
       </center>
     </div>
@@ -143,30 +147,28 @@
         const idioma = document.getElementById("Idioma").value;
         let lang = "";
 
-        if (idioma != "Select_lang") {
-          if (Valor) {
-            lang = Valor;
-          } else {
-            if (idioma == "es") {
-              lang = "es";
-            }
-            if (idioma == "en") {
-              lang = "en";
-            }
+        if (Valor) {
+          lang = Valor;
+        } else {
+          if (idioma == "es") {
+            lang = "es";
           }
-          fetch(`idiomas/${lang}.json`)
-            .then((response) => response.json())
-            .then((translations) => {
-              document.querySelectorAll("[data-i18n]").forEach((el) => {
-                const key = el.getAttribute("data-i18n");
-                if (translations[key]) {
-                  el.textContent = translations[key];
-                }
-              });
-              // Guarda el idioma en localStorage
-              localStorage.setItem("lang", lang);
-            });
+          if (idioma == "en") {
+            lang = "en";
+          }
         }
+        fetch(`idiomas/${lang}.json`)
+          .then((response) => response.json())
+          .then((translations) => {
+            document.querySelectorAll("[data-i18n]").forEach((el) => {
+              const key = el.getAttribute("data-i18n");
+              if (translations[key]) {
+                el.textContent = translations[key];
+              }
+            });
+            // Guarda el idioma en localStorage
+            localStorage.setItem("lang", lang);
+          });
       }
 
       function Mostrar_menu() {
@@ -183,5 +185,26 @@
         window.location.href = "Acerca_de.html";
       }
     </script>
+
+    <footer>
+      <div style="display: flex; justify-content: center">
+        <a href="https://www.facebook.com/electrofacil80" target="_blank"
+          ><img
+            class="redes_sociales"
+            style="margin-right: 10px"
+            src="imagenes/facebook.png"
+        /></a>
+        <a href="https://www.instagram.com/elec_trico19/" target="_blank"
+          ><img class="redes_sociales" src="imagenes/instagram.png"
+        /></a>
+        <a href="https://www.youtube.com/@electricidad80" target="_blank"
+          ><img
+            class="redes_sociales"
+            style="margin-left: 10px"
+            src="imagenes/youtube.png"
+        /></a>
+      </div>
+      <br />
+    </footer>
   </body>
 </html>

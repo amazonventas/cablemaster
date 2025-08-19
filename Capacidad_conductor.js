@@ -698,6 +698,7 @@ function Buscar() {
   const Ncond_act = document.getElementById("Conductores_activos").value;
   const Check_temp = document.getElementById("Check_Temperatura").checked;
   const temp = document.getElementById("Temperatura").value;
+  const savedLang = localStorage.getItem("lang") || "es";
   let Calibre;
 
   if (Unidades_calibre == "AWG") {
@@ -712,28 +713,44 @@ function Buscar() {
     Calibre = Conversion_mm2(mm2);
   }
 
-  const Corriente =
+  const Corriente = formatearNumero(
     FTemp(Check_temp, temp, Aislamiento, Material) *
-    FAgrup(Check_cond, Ncond_act) *
-    Corriente_Calibre(Calibre, Material, Aislamiento);
+      FAgrup(Check_cond, Ncond_act) *
+      Corriente_Calibre(Calibre, Material, Aislamiento)
+  );
 
-  document.getElementById("Resultado_Material").innerHTML =
-    "Material: " + Material;
+  if (savedLang == "es") {
+    document.getElementById("Resultado_Material").innerHTML = Material;
+  } else {
+    if (Material == "Cobre") {
+      document.getElementById("Resultado_Material").innerHTML = "Copper";
+    } else {
+      document.getElementById("Resultado_Material").innerHTML = "Aluminum";
+    }
+  }
 
   if (Corriente == 0) {
-    document.getElementById("Resultado").innerHTML = "Valor no definido.";
+    if (savedLang == "es") {
+      document.getElementById("Resultado").innerHTML = "Valor no definido.";
+    } else {
+      document.getElementById("Resultado").innerHTML = "Undefined value.";
+    }
   } else {
     document.getElementById("Resultado").innerHTML = Corriente + " Amp";
   }
   if (Unidades_calibre == "mm2") {
     document.getElementById("Resultado_Calibre").innerHTML =
-      "Calibre: " + Reconversion_mm2(Calibre) + " mm²";
+      Reconversion_mm2(Calibre) + " mm²";
 
     document.getElementById("Normativa").innerHTML = "Norma IEC 60228";
   } else {
-    document.getElementById("Resultado_Calibre").innerHTML =
-      "Calibre: " + Calibre;
-    document.getElementById("Normativa").innerHTML = "Tabla 310-16 NEC";
+    document.getElementById("Resultado_Calibre").innerHTML = Calibre;
+
+    if (savedLang == "es") {
+      document.getElementById("Normativa").innerHTML = "Tabla 310-16 NEC";
+    } else {
+      document.getElementById("Normativa").innerHTML = "Table 310-16 NEC";
+    }
   }
 
   document.getElementById("Resultado_buscar").style.display = "block";
@@ -741,4 +758,8 @@ function Buscar() {
 
 function cerrarModal() {
   document.getElementById("Resultado_buscar").style.display = "none";
+}
+
+function formatearNumero(num) {
+  return parseFloat(num.toFixed(2)).toString();
 }
