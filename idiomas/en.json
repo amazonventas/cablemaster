@@ -28,7 +28,7 @@
   "Seleccione_Calibre_tierra": "Select Phase Conductor Gauge:",
   "Calibre_Tierra": "Ground Gauge",
   "Recomendado:": "Recommended:",
-  "titulo_impedancia": "Impedance (Ω)",
+  "titulo_impedancia": "Impedance (Ω/km)",
   "Calibre_conductor": "Conductor Gauge",
   "Material_canalizacion": "Pipeline material",
   "Acero": "Steel",
@@ -57,5 +57,6 @@
   "Aislamiento_conductor": "Conductors Insulation",
   "titulo_acerca": "Home Energy Cost",
   "Pagina-desarrollador": "Developer page",
-  "derechos_reservados": "2025-All rights reserved"
+  "derechos_reservados": "2025-All rights reserved",
+  "Calcular": "Calculate"
 }

@@ -28,7 +28,7 @@
   "Seleccione_Calibre_tierra": "Seleccione Calibre Conductor Fase:",
   "Calibre_Tierra": "Calibre de Tierra",
   "Recomendado:": "Recomendado:",
-  "titulo_impedancia": "Impedancia (Ω)",
+  "titulo_impedancia": "Impedancia (Ω/km)",
   "Calibre_conductor": "Calibre Conductor",
   "Material_canalizacion": "Material Canalizacion",
   "Acero": "Acero",
@@ -57,5 +57,6 @@
   "Aislamiento_conductor": "Aislamiento Conductores",
   "titulo_acerca": "Costo Energía Hogar",
   "Pagina-desarrollador": "Página del desarrollador",
-  "derechos_reservados": "2025-Todos los derechos reservados"
+  "derechos_reservados": "2025-Todos los derechos reservados",
+  "Calcular": "Calcular"
 }
