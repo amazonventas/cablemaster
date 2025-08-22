@@ -6,8 +6,7 @@
     <title>CableMaster</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
     <link rel="icon" href="imagenes/icono.png" type="image/png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -15,11 +14,12 @@
     <div class="container-fluid pantalla-completa d-flex flex-column">
       <nav class="navbar navbar-expand bg-navbar shadow-sm px-3">
         <div
-          class="container-fluid d-flex justify-content-between align-items-center"
-        >
+          class="container-fluid d-flex justify-content-between align-items-center">
           <img src="imagenes/icono.png" class="icono" alt="" />
-          <span data-i18n="titulo_impedancia" style="color: white">
-            Impedancia (Ω)
+          <span
+            data-i18n="titulo_impedancia"
+            style="color: white; font-weight: 600">
+            Impedancia (Ω/km)
           </span>
           <button class="btn btn-navbar-icon ms-2" title="Opciones">
             <span
@@ -62,16 +62,14 @@
           </li>
           <li class="link_disabled">
             <img src="imagenes/actualizar.png" class="icono" /><span
-              data-i18n="Actualizar"
-            >
+              data-i18n="Actualizar">
               Actualizar</span
             >
           </li>
           <!-- <li class="disabled-link" data-i18n="Otras_app">Otras Apps</li>-->
           <li onclick="Mostrar_menu()">
             <img src="imagenes/cerrar.png" class="icono" /><span
-              data-i18n="Ocultar"
-            >
+              data-i18n="Ocultar">
               Ocultar</span
             >
           </li>
@@ -93,8 +91,7 @@
             class="form-select"
             style="text-align: center"
             aria-label="Default select example"
-            onchange="Unidades_cable()"
-          >
+            onchange="Unidades_cable()">
             <option value="AWG" selected>AWG</option>
             <option value="MCM">MCM</option>
           </select>
@@ -103,8 +100,7 @@
               id="AWG"
               class="form-select"
               style="text-align: center"
-              aria-label="Default select example"
-            >
+              aria-label="Default select example">
               <option value="#14" selected>#14</option>
               <option value="#12">#12</option>
               <option value="#10">#10</option>
@@ -126,8 +122,7 @@
               id="MCM"
               class="form-select"
               style="text-align: center"
-              aria-label="Default select example"
-            >
+              aria-label="Default select example">
               <option value="250" selected>250</option>
               <option value="300">300</option>
               <option value="350">350</option>
@@ -152,8 +147,7 @@
             id="Material"
             class="form-select"
             style="text-align: center"
-            aria-label="Default select example"
-          >
+            aria-label="Default select example">
             <option value="Cobre" selected data-i18n="Cobre">Cobre</option>
             <option value="Aluminio" data-i18n="Aluminio">Aluminio</option>
           </select>
@@ -168,8 +162,7 @@
             id="Material_canalizacion"
             class="form-select"
             style="text-align: center"
-            aria-label="Default select example"
-          >
+            aria-label="Default select example">
             <option value="PVC" selected>PVC</option>
             <option value="Aluminio" data-i18n="Aluminio">Aluminio</option>
             <option value="Acero" data-i18n="Acero">Acero</option>
@@ -181,8 +174,7 @@
           type="button"
           class="btn btn-primary btn-custom"
           onclick="Buscar()"
-          data-i18n="Buscar"
-        >
+          data-i18n="Buscar">
           Buscar
         </button>
 
@@ -206,13 +198,15 @@
                 <br />
                 <label
                   id="Resultado-R"
-                  style="color: blue; font-weight: 750; font-size: 20px"
-                ></label>
+                  style="
+                    color: blue;
+                    font-weight: 750;
+                    font-size: 20px;
+                  "></label>
                 <br /><br />
                 <label
                   id="Resultado-X"
-                  style="color: blue; font-weight: 750; font-size: 20px"
-                ></label
+                  style="color: blue; font-weight: 750; font-size: 20px"></label
                 ><br /><br />
                 <p style="font-size: 12px; justify-content: left">
                   <strong data-i18n="Nota">Nota:</strong>
@@ -226,8 +220,7 @@
                 <button
                   class="btn btn-primary"
                   onclick="cerrarModal()"
-                  data-i18n="Cerrar"
-                >
+                  data-i18n="Cerrar">
                   Cerrar
                 </button>
               </center>
@@ -239,61 +232,61 @@
     </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const savedLang = localStorage.getItem("lang") || "es";
+      document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('lang') || 'es';
         changeLanguage(savedLang);
       });
 
       function changeLanguage(Valor) {
-        const idioma = document.getElementById("Idioma").value;
-        let lang = "";
+        const idioma = document.getElementById('Idioma').value;
+        let lang = '';
 
         if (Valor) {
           lang = Valor;
         } else {
-          if (idioma == "es") {
-            lang = "es";
+          if (idioma == 'es') {
+            lang = 'es';
           }
-          if (idioma == "en") {
-            lang = "en";
+          if (idioma == 'en') {
+            lang = 'en';
           }
         }
         fetch(`idiomas/${lang}.json`)
-          .then((response) => response.json())
-          .then((translations) => {
-            document.querySelectorAll("[data-i18n]").forEach((el) => {
-              const key = el.getAttribute("data-i18n");
+          .then(response => response.json())
+          .then(translations => {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+              const key = el.getAttribute('data-i18n');
               if (translations[key]) {
                 el.textContent = translations[key];
               }
             });
             // Guarda el idioma en localStorage
-            localStorage.setItem("lang", lang);
+            localStorage.setItem('lang', lang);
           });
       }
 
       function Buscar() {
         const Unidades_calibre =
-          document.getElementById("Unidades_calibre").value;
-        const AWG = document.getElementById("AWG").value;
-        const MCM = document.getElementById("MCM").value;
-        const Material = document.getElementById("Material").value;
-        const Tuberia = document.getElementById("Material_canalizacion").value;
-        const savedLang = localStorage.getItem("lang") || "es";
+          document.getElementById('Unidades_calibre').value;
+        const AWG = document.getElementById('AWG').value;
+        const MCM = document.getElementById('MCM').value;
+        const Material = document.getElementById('Material').value;
+        const Tuberia = document.getElementById('Material_canalizacion').value;
+        const savedLang = localStorage.getItem('lang') || 'es';
         let Calibre;
 
-        if (Unidades_calibre == "AWG") {
+        if (Unidades_calibre == 'AWG') {
           Calibre = AWG;
         }
 
-        if (Unidades_calibre == "MCM") {
+        if (Unidades_calibre == 'MCM') {
           Calibre = MCM;
         }
 
-        fetch("https://electricidad-facil.com/impedancias", {
-          method: "POST",
+        fetch('https://electricidad-facil.com/impedancias', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             calibre: Calibre,
@@ -301,78 +294,78 @@
             canalizacion: Tuberia,
           }),
         })
-          .then((response) => response.json())
-          .then((data) => {
+          .then(response => response.json())
+          .then(data => {
             const Calibre_R = data.Calibre;
             const Material_R = data.Material;
             const Canalizacion_R = data.Canalizacion;
-            const Resistencia = eliminarCeros(data.Resistencia) + " Ω/km";
-            const Reactancia = eliminarCeros(data.Reactancia) + " Ω/km";
+            const Resistencia = eliminarCeros(data.Resistencia) + ' Ω/km';
+            const Reactancia = eliminarCeros(data.Reactancia) + ' Ω/km';
 
-            if (Unidades_calibre == "AWG") {
-              document.getElementById("Resultado_Calibre").textContent =
+            if (Unidades_calibre == 'AWG') {
+              document.getElementById('Resultado_Calibre').textContent =
                 Calibre_R;
             } else {
-              document.getElementById("Resultado_Calibre").textContent =
-                Calibre_R + " MCM";
+              document.getElementById('Resultado_Calibre').textContent =
+                Calibre_R + ' MCM';
             }
 
-            if (savedLang == "es") {
-              document.getElementById("Resultado_Material").textContent =
+            if (savedLang == 'es') {
+              document.getElementById('Resultado_Material').textContent =
                 Material_R;
             } else {
-              if (Material_R == "Cobre") {
-                document.getElementById("Resultado_Material").textContent =
-                  "Copper";
+              if (Material_R == 'Cobre') {
+                document.getElementById('Resultado_Material').textContent =
+                  'Copper';
               } else {
-                document.getElementById("Resultado_Material").textContent =
-                  "Aluminum";
+                document.getElementById('Resultado_Material').textContent =
+                  'Aluminum';
               }
             }
 
-            if (savedLang == "es") {
-              document.getElementById("Resultado_Canalizacion").textContent =
+            if (savedLang == 'es') {
+              document.getElementById('Resultado_Canalizacion').textContent =
                 Canalizacion_R;
             } else {
-              if (Canalizacion_R == "PVC") {
-                document.getElementById("Resultado_Canalizacion").textContent =
-                  "PVC";
+              if (Canalizacion_R == 'PVC') {
+                document.getElementById('Resultado_Canalizacion').textContent =
+                  'PVC';
               }
 
-              if (Canalizacion_R == "Aluminio") {
-                document.getElementById("Resultado_Canalizacion").textContent =
-                  "Aluminum";
+              if (Canalizacion_R == 'Aluminio') {
+                document.getElementById('Resultado_Canalizacion').textContent =
+                  'Aluminum';
               }
 
-              if (Canalizacion_R == "Acero") {
-                document.getElementById("Resultado_Canalizacion").textContent =
-                  "Steel";
+              if (Canalizacion_R == 'Acero') {
+                document.getElementById('Resultado_Canalizacion').textContent =
+                  'Steel';
               }
             }
 
-            document.getElementById("Resultado-R").textContent = Resistencia;
-            document.getElementById("Resultado-X").textContent = Reactancia;
+            document.getElementById('Resultado-R').textContent = Resistencia;
+            document.getElementById('Resultado-X').textContent = Reactancia;
 
-            document.getElementById("Resultado_buscar").style.display = "block";
+            document.getElementById('Resultado_buscar').style.display = 'block';
           })
-          .catch((error) => console.error("Error:", error));
+          .catch(error => console.error('Error:', error));
       }
 
       function Mostrar_menu() {
-        const btnMenu = document.getElementById("btnMenu");
-        const menu = document.getElementById("menuLateral");
-        if (menu.style.right === "0px") {
-          menu.style.right = "-200px"; // ocultar
+        const btnMenu = document.getElementById('btnMenu');
+        const menu = document.getElementById('menuLateral');
+        if (menu.style.right === '0px') {
+          menu.style.right = '-200px'; // ocultar
         } else {
-          menu.style.right = "0px"; // mostrar
+          menu.style.right = '0px'; // mostrar
         }
       }
 
       function eliminarCeros(str) {
-        if (typeof str !== "string") return str;
+        if (typeof str !== 'string') return str;
 
         // Reemplaza coma por punto si se usa coma decimal
-        let normalizado = str.replace(",", ".");
+        let normalizado = str.replace(',', '.');
 
         // Convierte a número y de vuelta a string para quitar ceros innecesarios
         let numero = parseFloat(normalizado);
@@ -384,25 +377,25 @@
       }
 
       function Page_Acerca_de() {
-        window.location.href = "Acerca_de.html";
+        window.location.href = 'Acerca_de.html';
       }
 
       function Unidades_cable() {
-        const Calibre = document.getElementById("Unidades_calibre").value;
+        const Calibre = document.getElementById('Unidades_calibre').value;
 
-        if (Calibre == "AWG") {
-          document.getElementById("Contenedor_AWG").style.display = "block";
-          document.getElementById("Contenedor_MCM").style.display = "none";
+        if (Calibre == 'AWG') {
+          document.getElementById('Contenedor_AWG').style.display = 'block';
+          document.getElementById('Contenedor_MCM').style.display = 'none';
         }
 
-        if (Calibre == "MCM") {
-          document.getElementById("Contenedor_AWG").style.display = "none";
-          document.getElementById("Contenedor_MCM").style.display = "block";
+        if (Calibre == 'MCM') {
+          document.getElementById('Contenedor_AWG').style.display = 'none';
+          document.getElementById('Contenedor_MCM').style.display = 'block';
         }
       }
 
       function cerrarModal() {
-        document.getElementById("Resultado_buscar").style.display = "none";
+        document.getElementById('Resultado_buscar').style.display = 'none';
       }
     </script>
   </body>

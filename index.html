@@ -6,8 +6,7 @@
     <title>CableMaster</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
     <link rel="icon" href="imagenes/icono.png" type="image/png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -15,10 +14,9 @@
     <div class="container-fluid pantalla-completa d-flex flex-column">
       <nav class="navbar navbar-expand bg-navbar shadow-sm px-3">
         <div
-          class="container-fluid d-flex justify-content-between align-items-center"
-        >
+          class="container-fluid d-flex justify-content-between align-items-center">
           <img src="imagenes/icono.png" class="icono" alt="" />
-          <span data-i18n="titulo_index" style="color: white">
+          <span data-i18n="titulo_index" style="color: white; font-weight: 600">
             Conductores hasta 600V
           </span>
           <button class="btn btn-navbar-icon ms-2" title="Opciones">
@@ -62,16 +60,14 @@
           </li>
           <li class="link_disabled">
             <img src="imagenes/actualizar.png" class="icono" /><span
-              data-i18n="Actualizar"
-            >
+              data-i18n="Actualizar">
               Actualizar</span
             >
           </li>
           <!-- <li class="disabled-link" data-i18n="Otras_app">Otras Apps</li>-->
           <li onclick="Mostrar_menu()">
             <img src="imagenes/cerrar.png" class="icono" /><span
-              data-i18n="Ocultar"
-            >
+              data-i18n="Ocultar">
               Ocultar</span
             >
           </li>
@@ -85,13 +81,13 @@
           <br />
           <img class="imagen_portada" src="imagenes/Portada.jpg" alt="" />
           <br />
+          <br />
           <a href="Capacidad_conductor.html">
             <button
               type="button"
               class="btn btn-primary btn-custom"
               style="margin-top: 10px"
-              data-i18n="Capacidad_conductor"
-            >
+              data-i18n="Capacidad_conductor">
               Capacidad del Conductor
             </button></a
           >
@@ -99,8 +95,7 @@
             <button
               type="button"
               class="btn btn-primary btn-custom"
-              data-i18n="Conductor_tierra"
-            >
+              data-i18n="Conductor_tierra">
               Conductor de Tierra
             </button></a
           >
@@ -108,8 +103,7 @@
             <button
               type="button"
               class="btn btn-primary btn-custom"
-              data-i18n="Impedancia_conductor"
-            >
+              data-i18n="Impedancia_conductor">
               Impedancia Conductores
             </button></a
           >
@@ -117,8 +111,7 @@
             <button
               type="button"
               class="btn btn-primary btn-custom"
-              data-i18n="Tipo_aislamiento"
-            >
+              data-i18n="Tipo_aislamiento">
               Tipo de Aislamiento
             </button></a
           >
@@ -127,8 +120,7 @@
               type="button"
               class="btn btn-primary btn-custom"
               style="margin-bottom: 8px"
-              data-i18n="Caida_voltaje"
-            >
+              data-i18n="Caida_voltaje">
               Caída de Voltaje
             </button></a
           >
@@ -138,53 +130,55 @@
 
     <script>
       // Cargar idioma guardado al iniciar
-      document.addEventListener("DOMContentLoaded", () => {
-        const savedLang = localStorage.getItem("lang") || "es";
+      document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('lang') || 'es';
         changeLanguage(savedLang);
       });
 
       function changeLanguage(Valor) {
-        const idioma = document.getElementById("Idioma").value;
-        let lang = "";
+        const idioma = document.getElementById('Idioma').value;
+        let lang = '';
 
         if (Valor) {
           lang = Valor;
         } else {
-          if (idioma == "es") {
-            lang = "es";
+          if (idioma == 'es') {
+            lang = 'es';
           }
-          if (idioma == "en") {
-            lang = "en";
+          if (idioma == 'en') {
+            lang = 'en';
           }
         }
         fetch(`idiomas/${lang}.json`)
-          .then((response) => response.json())
-          .then((translations) => {
-            document.querySelectorAll("[data-i18n]").forEach((el) => {
-              const key = el.getAttribute("data-i18n");
+          .then(response => response.json())
+          .then(translations => {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+              const key = el.getAttribute('data-i18n');
               if (translations[key]) {
                 el.textContent = translations[key];
               }
             });
             // Guarda el idioma en localStorage
-            localStorage.setItem("lang", lang);
+            localStorage.setItem('lang', lang);
           });
       }
 
       function Mostrar_menu() {
-        const btnMenu = document.getElementById("btnMenu");
-        const menu = document.getElementById("menuLateral");
-        if (menu.style.right === "0px") {
-          menu.style.right = "-200px"; // ocultar
+        const btnMenu = document.getElementById('btnMenu');
+        const menu = document.getElementById('menuLateral');
+        if (menu.style.right === '0px') {
+          menu.style.right = '-200px'; // ocultar
         } else {
-          menu.style.right = "0px"; // mostrar
+          menu.style.right = '0px'; // mostrar
         }
       }
 
       function Page_Acerca_de() {
-        window.location.href = "Acerca_de.html";
+        window.location.href = 'Acerca_de.html';
       }
     </script>
+
+    <br /><br />
 
     <footer>
       <div style="display: flex; justify-content: center">

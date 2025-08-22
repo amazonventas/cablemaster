@@ -6,8 +6,7 @@
     <title>Consumo Eléctrico kWh</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
     <link rel="icon" href="imagenes/icono.png" type="image/png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -15,12 +14,10 @@
     <div class="container-fluid pantalla-completa d-flex flex-column">
       <nav class="navbar navbar-expand bg-navbar shadow-sm px-3">
         <div
-          class="container-fluid d-flex justify-content-between align-items-center"
-        >
+          class="container-fluid d-flex justify-content-between align-items-center">
           <span
             class="text-white fs-5 fw-semibold text-center flex-grow-1"
-            data-i18n="Acerca"
-          >
+            data-i18n="Acerca">
             Acerca de
           </span>
           <button class="btn btn-navbar-icon ms-2" title="Opciones">
@@ -60,16 +57,14 @@
           </li>
           <li class="link_disabled">
             <img src="imagenes/actualizar.png" class="icono" /><span
-              data-i18n="Actualizar"
-            >
+              data-i18n="Actualizar">
               Actualizar</span
             >
           </li>
           <!-- <li class="disabled-link" data-i18n="Otras_app">Otras Apps</li>-->
           <li onclick="Mostrar_menu()">
             <img src="imagenes/cerrar.png" class="icono" /><span
-              data-i18n="Ocultar"
-            >
+              data-i18n="Ocultar">
               Ocultar</span
             >
           </li>
@@ -85,7 +80,7 @@
             <img class="Imagen_acerca_de" src="imagenes/icono.png" alt="" />
             <div style="margin-left: 20px">
               <h3 style="color: blue">CABLEMASTER</h3>
-              <label style="color: blue"><strong> version 1.0</strong></label>
+              <label style="color: blue"><strong> version 1.2</strong></label>
             </div>
           </div>
           <hr />
@@ -93,8 +88,7 @@
             <h5 data-i18n="Pagina-desarrollador">Página del desarrollador</h5>
             <a
               href="https://play.google.com/store/apps/dev?id=8605774119180036028&hl=es_419"
-              target="_blank"
-            >
+              target="_blank">
               <img
                 style="width: 80%; height: 40%"
                 src="imagenes/Pagina Desarrollador.jpg"
@@ -105,8 +99,7 @@
               <img
                 style="width: 10%; height: 10%"
                 src="imagenes/correo.jpg"
-                alt=""
-              />
+                alt="" />
               <h6 style="margin-left: 5px">electricidadfacil80@gmail.com</h6>
             </div>
             <br />
@@ -115,8 +108,7 @@
 
             <p
               style="font-size: 15px; font-weight: 700"
-              data-i18n="derechos_reservados"
-            >
+              data-i18n="derechos_reservados">
               2025-Todos los derechos reservados
             </p>
           </center>
@@ -125,52 +117,52 @@
       <!-- Fin Contenedor Principal -->
     </div>
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const savedLang = localStorage.getItem("lang") || "es";
+      document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('lang') || 'es';
         changeLanguage(savedLang);
       });
 
       function Page_Acerca_de() {
-        window.location.href = "Acerca_de.html";
+        window.location.href = 'Acerca_de.html';
       }
 
       function changeLanguage(Valor) {
-        let lang = "";
+        let lang = '';
 
         if (Valor) {
           lang = Valor;
         } else {
-          const idioma = document.getElementById("Idioma").value;
+          const idioma = document.getElementById('Idioma').value;
 
-          if (idioma == "es") {
-            lang = "es";
+          if (idioma == 'es') {
+            lang = 'es';
           }
-          if (idioma == "en") {
-            lang = "en";
+          if (idioma == 'en') {
+            lang = 'en';
           }
         }
-        if (lang == "es" || lang == "en") {
+        if (lang == 'es' || lang == 'en') {
           fetch(`idiomas/${lang}.json`)
-            .then((response) => response.json())
-            .then((translations) => {
-              document.querySelectorAll("[data-i18n]").forEach((el) => {
-                const key = el.getAttribute("data-i18n");
+            .then(response => response.json())
+            .then(translations => {
+              document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
                 if (translations[key]) {
                   el.textContent = translations[key];
                 }
               });
               // Guarda el idioma en localStorage
-              localStorage.setItem("lang", lang);
+              localStorage.setItem('lang', lang);
             });
         }
       }
 
       function Mostrar_menu() {
-        const menu = document.getElementById("menuLateral");
-        if (menu.style.right === "0px") {
-          menu.style.right = "-200px"; // ocultar
+        const menu = document.getElementById('menuLateral');
+        if (menu.style.right === '0px') {
+          menu.style.right = '-200px'; // ocultar
         } else {
-          menu.style.right = "0px"; // mostrar
+          menu.style.right = '0px'; // mostrar
         }
       }
     </script>
