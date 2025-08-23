@@ -4,6 +4,11 @@ body {
   margin: 0;
   padding: 0;
   overflow-y: auto;
+  background: linear-gradient(to right, #add8e6, #ffffff);
+}
+
+.Fondo {
+  background: linear-gradient(to right, #add8e6, #ffffff);
 }
 
 .Contenedor {
@@ -76,6 +81,7 @@ body {
 .imagen_portada {
   height: 30%;
   width: 50%;
+  color: transparent;
 }
 
 .titulo-cablemaster {
