@@ -68,7 +68,7 @@ function Enviar() {
     Calibre = MCM;
   }
 
-  fetch("https://electricidad-facil.com/impedancias", {
+  fetch("https://rapidotube.com/impedancias", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -290,3 +290,4 @@ function Validar(P, V, fp, N) {
 function formatearNumero(num) {
   return parseFloat(num.toFixed(2)).toString();
 }
+
