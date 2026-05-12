@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Caída de Voltaje - CableMaster</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="navbar-custom">
+      <div class="logo-container">
+        <img src="imagenes/icono.png" class="logo" alt="" />
+
+        <h1 class="titulo-app">Caída de Voltaje</h1>
+
+        <span class="subtitulo-app"> Conductores Baja Tensión </span>
+      </div>
+
+      <a href="index.html" class="btn-volver">
+        <i class="bi bi-arrow-left"></i>
+      </a>
+    </header>
+
+    <!-- CONTENIDO -->
+    <main class="container py-4">
+      <div class="breaker-card">
+        <!-- TITULO -->
+        <div class="titulo-seccion">
+          <i class="bi bi-plug-fill"></i>
+
+          Calculadora de Caída de Tensión
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label text-light"> Sistema </label>
+
+          <select id="sistema" class="form-select custom-select">
+            <option value="1">Monofásico</option>
+
+            <option value="3">Trifásico</option>
+          </select>
+        </div>
+
+        <!-- VOLTAJE -->
+        <div class="mb-3">
+          <label class="form-label text-light"> Voltaje </label>
+
+          <input
+            type="number"
+            id="voltaje"
+            class="form-control custom-select"
+            placeholder="Ej: 120, 208, 240, 480" />
+        </div>
+
+        <!-- POTENCIA -->
+        <div class="mb-3">
+          <label class="form-label text-light"> Potencia </label>
+
+          <input
+            type="number"
+            id="potencia"
+            class="form-control custom-select"
+            placeholder="Ej: 5000" />
+        </div>
+
+        <!-- UNIDAD -->
+        <div class="mb-3">
+          <label class="form-label text-light"> Unidad </label>
+
+          <select id="unidad" class="form-select custom-select">
+            <option value="W">Watts</option>
+
+            <option value="kW">kW</option>
+          </select>
+        </div>
+
+        <!-- FACTOR DE POTENCIA -->
+        <div class="mb-3">
+          <label class="form-label text-light"> Factor de Potencia </label>
+
+          <input
+            type="number"
+            id="fp"
+            class="form-control custom-select"
+            placeholder="Ej: 0.85"
+            value="0.9"
+            step="0.01"
+            min="0"
+            max="1" />
+        </div>
+
+        <!-- DISTANCIA -->
+        <div class="mb-3">
+          <label class="form-label text-light"> Distancia (metros) </label>
+
+          <input
+            type="number"
+            id="distancia"
+            class="form-control custom-select"
+            placeholder="Ej: 30" />
+        </div>
+
+        <!-- MATERIAL -->
+        <div class="mb-4">
+          <label class="form-label text-light"> Material conductor </label>
+
+          <select id="material" class="form-select custom-select">
+            <option value="0.0175">Cobre</option>
+
+            <option value="0.0282">Aluminio</option>
+          </select>
+        </div>
+
+        <!-- CALIBRE -->
+        <div class="mb-4">
+          <label class="form-label text-light"> Calibre del conductor </label>
+
+          <select id="awg" class="form-select custom-select">
+            <option value="14">14 AWG</option>
+            <option value="12">12 AWG</option>
+            <option value="10">10 AWG</option>
+            <option value="8">8 AWG</option>
+            <option value="6">6 AWG</option>
+            <option value="4">4 AWG</option>
+            <option value="3">3 AWG</option>
+            <option value="2">2 AWG</option>
+            <option value="1">1 AWG</option>
+            <option value="1/0">1/0 AWG</option>
+            <option value="2/0">2/0 AWG</option>
+            <option value="3/0">3/0 AWG</option>
+            <option value="4/0">4/0 AWG</option>
+            <option value="250">250 MCM</option>
+            <option value="300">300 MCM</option>
+            <option value="350">350 MCM</option>
+            <option value="400">400 MCM</option>
+            <option value="500">500 MCM</option>
+          </select>
+        </div>
+
+        <!-- BOTON -->
+        <button class="btn btn-primary w-100 py-3" onclick="calcularCaida()">
+          <i class="bi bi-lightning-charge-fill"></i>
+
+          Calcular
+        </button>
+
+        <!-- RESULTADOS -->
+        <div id="resultado" class="mt-4"></div>
+        <!-- RESULTADOS -->
+        <div id="resultado"></div>
+      </div>
+    </main>
+
+    <script>
+      function calcularCaida() {
+        const sistema = Number(document.getElementById('sistema').value);
+        const voltaje = Number(document.getElementById('voltaje').value);
+        let potencia = Number(document.getElementById('potencia').value);
+        const unidad = document.getElementById('unidad').value;
+        const distancia = Number(document.getElementById('distancia').value);
+        const material = document.getElementById('material').value;
+        const awg = document.getElementById('awg').value;
+        const fp = Number(document.getElementById('fp').value);
+        const resultado = document.getElementById('resultado');
+
+        if (!voltaje || !potencia || !distancia || !fp) {
+          resultado.innerHTML = '';
+
+          return;
+        }
+
+        /* kW -> W */
+        if (unidad === 'kW') {
+          potencia *= 1000;
+        }
+
+        /* CORRIENTE */
+        let corriente = 0;
+
+        if (sistema === 1) {
+          corriente = potencia / (voltaje * fp);
+        } else {
+          corriente = potencia / (1.732 * voltaje * fp);
+        }
+
+        /* COS Y SIN */
+        const cosfi = fp;
+        const sinfi = Math.sqrt(1 - Math.pow(fp, 2));
+
+        /* RESISTENCIAS */
+        const cobre = {
+          14: {R: 8.286, X: 0.058},
+          12: {R: 5.211, X: 0.05},
+          10: {R: 3.277, X: 0.043},
+          8: {R: 2.061, X: 0.036},
+          6: {R: 1.296, X: 0.031},
+          4: {R: 0.815, X: 0.028},
+          3: {R: 0.646, X: 0.026},
+          2: {R: 0.512, X: 0.024},
+          1: {R: 0.406, X: 0.022},
+          '1/0': {R: 0.322, X: 0.021},
+          '2/0': {R: 0.255, X: 0.02},
+          '3/0': {R: 0.202, X: 0.019},
+          '4/0': {R: 0.16, X: 0.018},
+          250: {R: 0.128, X: 0.017},
+          300: {R: 0.107, X: 0.016},
+          350: {R: 0.092, X: 0.015},
+          400: {R: 0.08, X: 0.014},
+          500: {R: 0.064, X: 0.013},
+        };
+
+        const aluminio = {
+          14: {R: 13.17, X: 0.058},
+          12: {R: 8.285, X: 0.05},
+          10: {R: 5.211, X: 0.043},
+          8: {R: 3.277, X: 0.036},
+          6: {R: 2.061, X: 0.031},
+          4: {R: 1.296, X: 0.028},
+          3: {R: 1.026, X: 0.026},
+          2: {R: 0.815, X: 0.024},
+          1: {R: 0.646, X: 0.022},
+          '1/0': {R: 0.512, X: 0.021},
+          '2/0': {R: 0.406, X: 0.02},
+          '3/0': {R: 0.322, X: 0.019},
+          '4/0': {R: 0.255, X: 0.018},
+          250: {R: 0.205, X: 0.017},
+          300: {R: 0.171, X: 0.016},
+          350: {R: 0.147, X: 0.015},
+          400: {R: 0.128, X: 0.014},
+          500: {R: 0.102, X: 0.013},
+        };
+
+        let datos = null;
+
+        if (material === 'cobre') {
+          datos = cobre[awg];
+        } else {
+          datos = aluminio[awg];
+        }
+
+        const R = datos.R;
+
+        const X = datos.X;
+
+        /* FORMULA */
+
+        let caida = 0;
+
+        if (sistema === 1) {
+          caida = (2 * corriente * distancia * (R * cosfi + X * sinfi)) / 1000;
+        } else {
+          caida =
+            (1.732 * corriente * distancia * (R * cosfi + X * sinfi)) / 1000;
+        }
+
+        const porcentaje = (caida / voltaje) * 100;
+
+        /* ESTADO */
+        let estado = '';
+
+        if (porcentaje <= 3) {
+          estado = '<span class="badge bg-success">Excelente</span>';
+        } else if (porcentaje <= 5) {
+          estado = '<span class="badge bg-warning text-dark">Aceptable</span>';
+        } else {
+          estado = '<span class="badge bg-danger">Mala</span>';
+        }
+
+        resultado.innerHTML = `
+
+    <div class="leyenda-box">
+
+      <div class="resultado-title">
+
+        <i class="bi bi-graph-up-arrow"></i>
+
+        Resultado
+
+      </div>
+
+      <div class="leyenda-grid">
+
+        <div>
+          <strong>Corriente</strong>
+          <small>${corriente.toFixed(2)} A</small>
+        </div>
+
+        <div>
+          <strong>Resistencia</strong>
+          <small>${R} Ω/km</small>
+        </div>
+
+        <div>
+          <strong>Reactancia</strong>
+          <small>${X} Ω/km</small>
+        </div>
+
+        <div>
+          <strong>Caída</strong>
+          <small>${caida.toFixed(2)} V</small>
+        </div>
+
+        <div>
+          <strong>%</strong>
+          <small>${porcentaje.toFixed(2)} %</small>
+        </div>
+
+        <div>
+          <strong>Estado</strong>
+          <small>${estado}</small>
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+      }
+    </script>
+  </body>
+</html>

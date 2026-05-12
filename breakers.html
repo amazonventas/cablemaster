@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Breakers - CableMaster</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="navbar-custom">
+      <div class="logo-container">
+        <img src="imagenes/icono.png" class="logo" alt="" />
+
+        <div>
+          <h1 class="titulo-app">Breakers</h1>
+          <span class="subtitulo-app"> Interruptores Termomagnéticos </span>
+        </div>
+      </div>
+
+      <a href="index.html" class="btn-volver">
+        <i class="bi bi-arrow-left"></i>
+      </a>
+    </header>
+
+    <!-- CONTENIDO -->
+    <main class="container py-4">
+      <!-- CARD PRINCIPAL -->
+      <div class="breaker-card">
+        <div class="titulo-seccion">
+          <i class="bi bi-lightning-charge-fill"></i>
+          Selección de Breaker
+        </div>
+
+        <!-- SELECT NORMA -->
+        <div class="mb-4">
+          <label class="form-label text-light"> Seleccione la norma </label>
+
+          <select
+            id="norma"
+            class="form-select custom-select"
+            onchange="mostrarBreakers()">
+            <option value="">Seleccione</option>
+
+            <option value="NEMA">NEMA</option>
+
+            <option value="IEC">IEC</option>
+          </select>
+        </div>
+
+        <!-- RESULTADOS -->
+        <div id="resultado"></div>
+      </div>
+    </main>
+
+    <script>
+      function mostrarBreakers() {
+        const norma = document.getElementById('norma').value;
+
+        const resultado = document.getElementById('resultado');
+
+        if (norma === '') {
+          resultado.innerHTML = '';
+
+          return;
+        }
+
+        if (norma === 'NEMA') {
+          resultado.innerHTML = `
+
+            <div class="resultado-card">
+
+              <h3 class="resultado-title">
+                <i class="bi bi-shield-fill-check"></i>
+                Breakers NEMA
+              </h3>
+
+              <p class="resultado-text">
+                Utilizados principalmente en América.
+                Voltajes típicos hasta 600V.
+              </p>
+
+              <div class="tabla-responsive">
+
+                <table class="table table-dark table-bordered table-hover">
+
+                  <thead>
+                    <tr>
+                      <th>Tipo</th>
+                      <th>Valores Comerciales</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+
+                    <tr>
+                      <td>Mini Breaker</td>
+                      <td>
+                        15A, 20A, 30A, 40A, 50A, 60A
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>MCCB</td>
+                      <td>
+                        70A, 100A, 125A, 150A, 225A,
+                        250A, 400A, 600A
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Power Breaker</td>
+                      <td>
+                        800A, 1200A, 1600A, 2000A,
+                        2500A, 3200A
+                      </td>
+                    </tr>
+
+                  </tbody>
+
+                </table>
+
+              </div>
+
+            </div>
+
+          `;
+        }
+
+        if (norma === 'IEC') {
+          resultado.innerHTML = `
+
+            <div class="resultado-card">
+
+              <h3 class="resultado-title">
+                <i class="bi bi-globe"></i>
+                Breakers IEC
+              </h3>
+
+              <p class="resultado-text">
+                Utilizados internacionalmente.
+                Voltajes típicos hasta 600V.
+              </p>
+
+              <div class="tabla-responsive">
+
+                <table class="table table-dark table-bordered table-hover">
+
+                  <thead>
+                    <tr>
+                      <th>Tipo</th>
+                      <th>Valores Comerciales</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+
+                    <tr>
+                      <td>MCB</td>
+                      <td>
+                        2A, 4A, 6A, 10A, 16A, 20A,
+                        25A, 32A, 40A, 50A, 63A
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>MCCB</td>
+                      <td>
+                        80A, 100A, 125A, 160A, 250A,
+                        400A, 630A
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>ACB</td>
+                      <td>
+                        800A, 1000A, 1600A, 2500A,
+                        3200A
+                      </td>
+                    </tr>
+
+                  </tbody>
+
+                </table>
+
+              </div>
+
+            </div>
+
+          `;
+        }
+      }
+    </script>
+  </body>
+</html>

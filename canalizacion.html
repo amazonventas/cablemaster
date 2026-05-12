@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Canalizaciones Eléctricas - CableMaster</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="navbar-custom">
+      <div class="logo-container">
+        <img src="imagenes/icono.png" class="logo" alt="" />
+
+        <h1 class="titulo-app">Canalizaciones</h1>
+
+        <span class="subtitulo-app"> Tuberías Eléctricas </span>
+      </div>
+
+      <a href="index.html" class="btn-volver">
+        <i class="bi bi-arrow-left"></i>
+      </a>
+    </header>
+
+    <!-- CONTENIDO -->
+    <main class="container py-4">
+      <div class="breaker-card">
+        <!-- TITULO -->
+        <div class="titulo-seccion">
+          <i class="bi bi-plug-fill"></i>
+
+          Canalizaciones Eléctricas
+        </div>
+
+        <!-- NORMA -->
+        <div class="mb-4">
+          <label class="form-label text-light"> Seleccione tipo: </label>
+
+          <select
+            id="tipoCanalizacion"
+            class="form-select custom-select"
+            onchange="mostrarCanalizaciones()">
+            <option value="">Seleccione tipo</option>
+            <option value="EMT">EMT</option>
+            <option value="PVC">PVC</option>
+            <option value="RMC">RMC / IMC</option>
+            <option value="FLEX">Flexible</option>
+          </select>
+        </div>
+
+        <!-- RESULTADOS -->
+        <div id="resultado"></div>
+      </div>
+    </main>
+
+    <script>
+      function mostrarCanalizaciones() {
+        const tipo = document.getElementById('tipoCanalizacion').value;
+
+        const resultado = document.getElementById('resultado');
+
+        if (tipo === '') {
+          resultado.innerHTML = '';
+
+          return;
+        }
+
+        resultado.innerHTML = `
+
+    <div class="resultado-card">
+
+      <h3 class="resultado-title">
+
+        <i class="bi bi-diagram-3-fill"></i>
+
+        Canalización ${tipo}
+
+      </h3>
+
+      <p class="resultado-text">
+
+        Diámetros comerciales típicos
+        para tuberías eléctricas.
+
+      </p>
+
+      ${generarTablaCanalizacion(tipo)}
+
+    </div>
+
+  `;
+      }
+
+      /* ========================= */
+      /* TABLAS */
+      /* ========================= */
+
+      function generarTablaCanalizacion(tipo) {
+        let filas = '';
+
+        /* EMT */
+
+        if (tipo === 'EMT') {
+          filas = `
+      <tr><td>1/2"</td><td>16</td></tr>
+      <tr><td>3/4"</td><td>21</td></tr>
+      <tr><td>1"</td><td>27</td></tr>
+      <tr><td>1-1/4"</td><td>35</td></tr>
+      <tr><td>1-1/2"</td><td>41</td></tr>
+      <tr><td>2"</td><td>53</td></tr>
+      <tr><td>2-1/2"</td><td>63</td></tr>
+      <tr><td>3"</td><td>78</td></tr>
+      <tr><td>4"</td><td>103</td></tr>
+    `;
+        }
+
+        /* PVC */
+
+        if (tipo === 'PVC') {
+          filas = `
+      <tr><td>1/2"</td><td>16</td></tr>
+      <tr><td>3/4"</td><td>21</td></tr>
+      <tr><td>1"</td><td>27</td></tr>
+      <tr><td>1-1/4"</td><td>35</td></tr>
+      <tr><td>1-1/2"</td><td>41</td></tr>
+      <tr><td>2"</td><td>53</td></tr>
+      <tr><td>2-1/2"</td><td>63</td></tr>
+      <tr><td>3"</td><td>78</td></tr>
+      <tr><td>4"</td><td>103</td></tr>
+    `;
+        }
+
+        /* RMC */
+
+        if (tipo === 'RMC') {
+          filas = `
+      <tr><td>1/2"</td><td>16</td></tr>
+      <tr><td>3/4"</td><td>21</td></tr>
+      <tr><td>1"</td><td>27</td></tr>
+      <tr><td>1-1/4"</td><td>35</td></tr>
+      <tr><td>1-1/2"</td><td>41</td></tr>
+      <tr><td>2"</td><td>53</td></tr>
+      <tr><td>2-1/2"</td><td>63</td></tr>
+      <tr><td>3"</td><td>78</td></tr>
+      <tr><td>4"</td><td>103</td></tr>
+      <tr><td>5"</td><td>129</td></tr>
+      <tr><td>6"</td><td>155</td></tr>
+    `;
+        }
+
+        /* FLEX */
+
+        if (tipo === 'FLEX') {
+          filas = `
+      <tr><td>3/8"</td><td>12</td></tr>
+      <tr><td>1/2"</td><td>16</td></tr>
+      <tr><td>3/4"</td><td>21</td></tr>
+      <tr><td>1"</td><td>27</td></tr>
+      <tr><td>1-1/4"</td><td>35</td></tr>
+      <tr><td>1-1/2"</td><td>41</td></tr>
+      <tr><td>2"</td><td>53</td></tr>
+    `;
+        }
+
+        return `
+
+    <div class="material-header">
+
+      <i class="bi bi-hammer"></i>
+
+      <span>${tipo}</span>
+
+    </div>
+
+    <div class="tabla-responsive">
+
+      <table class="table table-dark table-bordered table-sm align-middle text-center">
+
+        <thead>
+
+          <tr>
+            <th>Pulgadas</th>
+            <th>mm</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${filas}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <div class="leyenda-box">
+
+      <div class="leyenda-title">
+
+        <i class="bi bi-info-circle-fill"></i>
+
+        Información
+
+      </div>
+
+      <div class="leyenda-grid">
+
+        <div>
+          <span class="badge bg-primary">${tipo}</span>
+          <small>Diámetros comerciales típicos</small>
+        </div>
+
+      </div>
+
+      <hr style="border-color:#334155">
+
+      <small style="color:#94a3b8">
+
+        Valores comerciales usados
+        en instalaciones eléctricas
+        de baja tensión.
+
+      </small>
+
+    </div>
+
+  `;
+      }
+    </script>
+  </body>
+</html>
